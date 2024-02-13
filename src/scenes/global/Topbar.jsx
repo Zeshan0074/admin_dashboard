@@ -1,25 +1,22 @@
-import React from "react";
+import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
-import { Box, IconButton, InputBase } from "@mui/material";
-import {
-  LightModeOutlined as LightModeIcon,
-  DarkModeOutlined as DarkModeIcon,
-  NotificationsActiveOutlined as NotificationsIcon,
-  SettingsOutlined as SettingsIcon,
-  PersonOutlined as PersonIcon,
-  SearchOutlined as SearchIcon,
-} from "@mui/icons-material";
-import { useTheme } from "@emotion/react";
+import InputBase from "@mui/material/InputBase";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 
-export default function Topbar() {
+const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+
   return (
-    //This is the outer box of the top bar
     <Box display="flex" justifyContent="space-between" p={2}>
-      {/* This box is for Searchbar and it's icon */}
+      {/* SEARCH BAR */}
       <Box
         display="flex"
         backgroundColor={colors.primary[400]}
@@ -31,27 +28,27 @@ export default function Topbar() {
         </IconButton>
       </Box>
 
-      {/* This box is for other icon on the right side */}
-
-      <Box display="flex" justifyContent="space-between">
+      {/* ICONS */}
+      <Box display="flex">
         <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
-         
-        </IconButton>
-
-        <IconButton>
-          <NotificationsIcon />
-        </IconButton>
-        <IconButton>
-          <SettingsIcon />
+          {theme.palette.mode === "dark" ? (
+            <DarkModeOutlinedIcon />
+          ) : (
+            <LightModeOutlinedIcon />
+          )}
         </IconButton>
         <IconButton>
-          <PersonIcon />
+          <NotificationsOutlinedIcon />
         </IconButton>
         <IconButton>
-          <SearchIcon />
+          <SettingsOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <PersonOutlinedIcon />
         </IconButton>
       </Box>
     </Box>
   );
-}
+};
+
+export default Topbar;
